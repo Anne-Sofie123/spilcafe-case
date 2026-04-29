@@ -1,17 +1,12 @@
 "use strict";
 
-const URL =
-  "https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/movies.json";
-
-let allGames = [];
-
 const gameList = document.querySelector("#movie-list");
-const genreSelect = document.querySelector("#genre-select");
 const searchInput = document.querySelector("#search-input");
 const sortSelect = document.querySelector("#sort-select");
+const genreSelect = document.querySelector("#genre-select");
 const countText = document.querySelector("#movie-count");
 
-// 🖼️ DINE 10 BILLEDER
+// 🖼️ DINE BILLEDER (i samme rækkefølge som spillene)
 const images = [
   "https://image.bog-ide.dk/2670261-1075942-1000-1000/webp/0/1000/2670261-1075942-1000-1000.webp",
   "https://image.bog-ide.dk/2191954-1098986-1000-797/jpg/0/720/2191954-1098986-1000-797.jpg",
@@ -25,22 +20,29 @@ const images = [
   "https://image.bog-ide.dk/2756017-344117-1000-1000/webp/0/828/2756017-344117-1000-1000.webp"
 ];
 
-// 🚀 START APP
-fetchGames();
+// 🎮 DINE SPIL (i samme rækkefølge)
+let games = [
+  { title: "Catan Junior", genre: ["Strategi"], rating: 4.5 },
+  { title: "Sequence", genre: ["Strategi"], rating: 4.3 },
+  { title: "Det dårlige selskab - for hele familien", genre: ["Party"], rating: 4.2 },
+  { title: "Partners", genre: ["Strategi"], rating: 4.4 },
+  { title: "Det burde man jo vide", genre: ["Quiz"], rating: 4.1 },
+  { title: "Hint - partyspillet", genre: ["Party"], rating: 4.6 },
+  { title: "Matador", genre: ["Klassisk"], rating: 4.7 },
+  { title: "Ticket to Ride", genre: ["Strategi"], rating: 4.8 },
+  { title: "Monopoly", genre: ["Klassisk"], rating: 4.3 },
+  { title: "Det dårlige selskab", genre: ["Party"], rating: 4.2 }
+];
 
-async function fetchGames() {
-  const res = await fetch(URL);
-  allGames = await res.json();
+// 🚀 START
+renderGames(games);
+populateGenres();
 
-  populateGenres();
-  renderGames(allGames);
-}
-
-// 🎯 GENRES
+// 🎯 genres
 function populateGenres() {
   const genres = new Set();
 
-  allGames.forEach(game => {
+  games.forEach(game => {
     game.genre.forEach(g => genres.add(g));
   });
 
@@ -52,21 +54,20 @@ function populateGenres() {
   });
 }
 
-// 🎮 RENDER (KUN 10 SPIL)
-function renderGames(games) {
+// 🎮 RENDER
+function renderGames(list) {
   gameList.innerHTML = "";
 
   countText.textContent = "Find dit næste spil";
 
-  // 👉 KUN 10 SPIL
-  const limitedGames = games.slice(0, 10);
+  const limited = list.slice(0, 10);
 
-  limitedGames.forEach((game, index) => {
+  limited.forEach((game, index) => {
     const html = `
       <article class="movie-card">
         <img class="movie-image" src="${images[index]}" alt="${game.title}">
         <div class="movie-info">
-          <h2>${game.title} (${game.year})</h2>
+          <h2>${game.title}</h2>
           <p>${game.genre.join(", ")}</p>
           <p>⭐ ${game.rating}</p>
         </div>
@@ -88,7 +89,7 @@ function showDialog(game, index) {
   content.innerHTML = `
     <img src="${images[index]}" alt="${game.title}">
     <h2>${game.title}</h2>
-    <p>${game.description}</p>
+    <p>Genre: ${game.genre.join(", ")}</p>
     <p>⭐ ${game.rating}</p>
   `;
 
@@ -97,13 +98,13 @@ function showDialog(game, index) {
 
 // 🔎 FILTER + SORT
 function updateGames() {
-  let games = [...allGames];
+  let filtered = [...games];
 
   const search = searchInput.value.toLowerCase();
   const genre = genreSelect.value;
   const sort = sortSelect.value;
 
-  games = games.filter(game => {
+  filtered = filtered.filter(game => {
     return (
       game.title.toLowerCase().includes(search) &&
       (genre === "all" || game.genre.includes(genre))
@@ -111,21 +112,17 @@ function updateGames() {
   });
 
   if (sort === "title") {
-    games.sort((a, b) => a.title.localeCompare(b.title));
-  }
-
-  if (sort === "year") {
-    games.sort((a, b) => b.year - a.year);
+    filtered.sort((a, b) => a.title.localeCompare(b.title));
   }
 
   if (sort === "rating") {
-    games.sort((a, b) => b.rating - a.rating);
+    filtered.sort((a, b) => b.rating - a.rating);
   }
 
-  renderGames(games);
+  renderGames(filtered);
 }
 
-// 👂 EVENTS
+// 👂 events
 searchInput.addEventListener("input", updateGames);
 genreSelect.addEventListener("change", updateGames);
 sortSelect.addEventListener("change", updateGames);
