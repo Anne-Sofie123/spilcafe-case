@@ -43,7 +43,7 @@ function renderGames(games) {
   gameList.innerHTML = "";
 
   // ✅ NY TEKST HER
-  countText.textContent = "🎮 Find dit næste spil";
+  countText.textContent = "Find dit næste spil";
 
   games.forEach(game => {
     const html = `

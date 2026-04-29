@@ -10,26 +10,27 @@
 <body>
 
   <header>
-    <h1 class="logo">🎮 Game App</h1>
-    <p>Søg, filtrér og sortér spil</p>
+    <h1 class="logo">
+      <img 
+        src="https://static1.squarespace.com/static/61fd2c9026a58c435d260f4c/t/653f77ecf6d752776e1b1050/1698658284825/SC-logo-2023-transparant-BG+Small+Crop.png?format=1500w" 
+        alt="Game App logo"
+      >
+    </h1>
   </header>
 
   <!-- CONTROLS -->
   <section class="controls">
 
-    <!-- SØGNING -->
     <input 
       id="search-input" 
       type="text" 
       placeholder="Søg spil..."
     />
 
-    <!-- GENRE -->
     <select id="genre-select">
       <option value="all">Alle genrer</option>
     </select>
 
-    <!-- SORTERING -->
     <select id="sort-select">
       <option value="title">Sortér efter titel</option>
       <option value="year">Sortér efter år</option>
@@ -38,7 +39,7 @@
 
   </section>
 
-  <!-- COUNT -->
+  <!-- TEXT UNDER HEADER -->
   <p id="movie-count" class="movie-count"></p>
 
   <!-- GRID -->
