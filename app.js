@@ -3,29 +3,31 @@
 const URL =
   "https://raw.githubusercontent.com/cederdorff/race/refs/heads/master/data/movies.json";
 
-let allMovies = [];
+let allGames = [];
 
-const movieList = document.querySelector("#movie-list");
+const gameList = document.querySelector("#movie-list");
 const genreSelect = document.querySelector("#genre-select");
 const searchInput = document.querySelector("#search-input");
 const sortSelect = document.querySelector("#sort-select");
-const movieCount = document.querySelector("#movie-count");
+const countText = document.querySelector("#movie-count");
 
-fetchMovies();
+// 🚀 start app
+fetchGames();
 
-async function fetchMovies() {
+async function fetchGames() {
   const res = await fetch(URL);
-  allMovies = await res.json();
+  allGames = await res.json();
 
   populateGenres();
-  renderMovies(allMovies);
+  renderGames(allGames);
 }
 
+// 🎯 genres
 function populateGenres() {
   const genres = new Set();
 
-  allMovies.forEach(movie => {
-    movie.genre.forEach(g => genres.add(g));
+  allGames.forEach(game => {
+    game.genre.forEach(g => genres.add(g));
   });
 
   genres.forEach(genre => {
@@ -36,72 +38,77 @@ function populateGenres() {
   });
 }
 
-function renderMovies(movies) {
-  movieList.innerHTML = "";
+// 🎮 render spil
+function renderGames(games) {
+  gameList.innerHTML = "";
 
-  movieCount.textContent = `Viser ${movies.length} film`;
+  // ✅ NY TEKST HER
+  countText.textContent = "🎮 Find dit næste spil";
 
-  movies.forEach(movie => {
+  games.forEach(game => {
     const html = `
       <article class="movie-card">
-        <img class="movie-image" src="${movie.image}" alt="${movie.title}">
+        <img class="movie-image" src="${game.image}" alt="${game.title}">
         <div class="movie-info">
-          <h2>${movie.title} (${movie.year})</h2>
-          <p>${movie.genre.join(", ")}</p>
-          <p>⭐ ${movie.rating}</p>
+          <h2>${game.title} (${game.year})</h2>
+          <p>${game.genre.join(", ")}</p>
+          <p>⭐ ${game.rating}</p>
         </div>
       </article>
     `;
 
-    movieList.insertAdjacentHTML("beforeend", html);
+    gameList.insertAdjacentHTML("beforeend", html);
 
-    const card = movieList.lastElementChild;
-    card.addEventListener("click", () => showDialog(movie));
+    const card = gameList.lastElementChild;
+    card.addEventListener("click", () => showDialog(game));
   });
 }
 
-function showDialog(movie) {
+// 🪟 dialog
+function showDialog(game) {
   const dialog = document.querySelector("#movie-dialog");
   const content = document.querySelector("#dialog-content");
 
   content.innerHTML = `
-    <img src="${movie.image}" alt="${movie.title}">
-    <h2>${movie.title}</h2>
-    <p>${movie.description}</p>
-    <p>⭐ ${movie.rating}</p>
+    <img src="${game.image}" alt="${game.title}">
+    <h2>${game.title}</h2>
+    <p>${game.description}</p>
+    <p>⭐ ${game.rating}</p>
   `;
 
   dialog.showModal();
 }
 
-function filterAndSort() {
-  let movies = [...allMovies];
+// 🔎 filter + sort
+function updateGames() {
+  let games = [...allGames];
 
   const search = searchInput.value.toLowerCase();
   const genre = genreSelect.value;
   const sort = sortSelect.value;
 
-  movies = movies.filter(movie => {
-    const matchSearch = movie.title.toLowerCase().includes(search);
-    const matchGenre = genre === "all" || movie.genre.includes(genre);
+  games = games.filter(game => {
+    const matchSearch = game.title.toLowerCase().includes(search);
+    const matchGenre = genre === "all" || game.genre.includes(genre);
     return matchSearch && matchGenre;
   });
 
   if (sort === "title") {
-    movies.sort((a, b) => a.title.localeCompare(b.title));
+    games.sort((a, b) => a.title.localeCompare(b.title));
   }
 
   if (sort === "year") {
-    movies.sort((a, b) => b.year - a.year);
+    games.sort((a, b) => b.year - a.year);
   }
 
   if (sort === "rating") {
-    movies.sort((a, b) => b.rating - a.rating);
+    games.sort((a, b) => b.rating - a.rating);
   }
 
-  renderMovies(movies);
+  renderGames(games);
 }
 
-searchInput.addEventListener("input", filterAndSort);
-genreSelect.addEventListener("change", filterAndSort);
-sortSelect.addEventListener("change", filterAndSort);
+// 👂 events
+searchInput.addEventListener("input", updateGames);
+genreSelect.addEventListener("change", updateGames);
+sortSelect.addEventListener("change", updateGames);
