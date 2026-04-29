@@ -6,25 +6,95 @@ const sortSelect = document.querySelector("#sort-select");
 const genreSelect = document.querySelector("#genre-select");
 const countText = document.querySelector("#movie-count");
 
-// 🎮 SPIL + BILLEDER SAMMEN (FIXET)
+// 🎮 SPIL DATA (ALT BEVARET + FIXET STRUKTUR)
 let games = [
-  { title: "Catan Junior", genre: ["Strategi"], rating: 4.8, image: "https://image.bog-ide.dk/2670261-1075942-1000-1000/webp/0/1000/2670261-1075942-1000-1000.webp" },
-  { title: "Sequence", genre: ["Strategi"], rating: 3.8, image: "https://image.bog-ide.dk/2191954-1098986-1000-797/jpg/0/720/2191954-1098986-1000-797.jpg" },
-  { title: "Det dårlige selskab - for hele familien", genre: ["Party"], rating: 4.8, image: "https://owp.klarna.com/product/232x232/3245818198/For-Hele-Familien%21.jpg?ph=true" },
-  { title: "Partners", genre: ["Strategi"], rating: 4.8, image: "https://spilregler.dk/wp-content/uploads/2018/12/Partners-300x300.png" },
-  { title: "Det burde man jo vide", genre: ["Quiz"], rating: 4.8, image: "https://image.bog-ide.dk/2682991-307415-1000-1000/webp/0/828/2682991-307415-1000-1000.webp" },
-  { title: "Hint - partyspillet", genre: ["Party"], rating: 4.9, image: "https://image.bog-ide.dk/5744789-1524823-1000-1000/webp/0/1000/5744789-1524823-1000-1000.webp" },
-  { title: "Matador", genre: ["Klassisk"], rating: 5, image: "https://content.gucca.dk/screenshots/original/m/a/matador_111121_3.jpg" },
-  { title: "Ticket to Ride", genre: ["Strategi"], rating: 3.2, image: "https://image.bog-ide.dk/1900731-650524-999-1000/webp/0/828/1900731-650524-999-1000.webp" },
-  { title: "Monopoly", genre: ["Klassisk"], rating: 5.5, image: "https://image.bog-ide.dk/4786036-1086187-1000-1000/webp/0/828/4786036-1086187-1000-1000.webp" },
-  { title: "Det dårlige selskab", genre: ["Party"], rating: 4.9, image: "https://image.bog-ide.dk/2756017-344117-1000-1000/webp/0/828/2756017-344117-1000-1000.webp" }
+  {
+    id: 1,
+    title: "Matador",
+    description: "Dansk klassiker inspireret af Monopoly.",
+    image: "https://content.gucca.dk/screenshots/original/m/a/matador_111121_3.jpg",
+    genre: ["Klassisk"],
+    rating: 5,
+  },
+  {
+    id: 2,
+    title: "Catan Junior",
+    description: "Strategispil for børn.",
+    image: "https://image.bog-ide.dk/2670261-1075942-1000-1000/webp/0/1000/2670261-1075942-1000-1000.webp",
+    genre: ["Strategi"],
+    rating: 4.8,
+  },
+  {
+    id: 3,
+    title: "Sequence",
+    description: "Kort- og brætspil kombination.",
+    image: "https://image.bog-ide.dk/2191954-1098986-1000-797/jpg/0/720/2191954-1098986-1000-797.jpg",
+    genre: ["Strategi"],
+    rating: 3.8,
+  },
+  {
+    id: 4,
+    title: "Det dårlige selskab - for hele familien",
+    description: "Partyspil for alle.",
+    image: "https://owp.klarna.com/product/232x232/3245818198/For-Hele-Familien%21.jpg?ph=true",
+    genre: ["Party"],
+    rating: 4.8,
+  },
+  {
+    id: 5,
+    title: "Partners",
+    description: "Holdbaseret brætspil.",
+    image: "https://spilregler.dk/wp-content/uploads/2018/12/Partners-300x300.png",
+    genre: ["Strategi"],
+    rating: 4.8,
+  },
+  {
+    id: 6,
+    title: "Det burde man jo vide",
+    description: "Quizspil med sjove spørgsmål.",
+    image: "https://image.bog-ide.dk/2682991-307415-1000-1000/webp/0/828/2682991-307415-1000-1000.webp",
+    genre: ["Quiz"],
+    rating: 4.8,
+  },
+  {
+    id: 7,
+    title: "Hint - partyspillet",
+    description: "Gæt og tegn spil.",
+    image: "https://image.bog-ide.dk/5744789-1524823-1000-1000/webp/0/1000/5744789-1524823-1000-1000.webp",
+    genre: ["Party"],
+    rating: 4.9,
+  },
+  {
+    id: 8,
+    title: "Ticket to Ride",
+    description: "Togstrategi spil.",
+    image: "https://image.bog-ide.dk/1900731-650524-999-1000/webp/0/828/1900731-650524-1000-1000.webp",
+    genre: ["Strategi"],
+    rating: 3.2,
+  },
+  {
+    id: 9,
+    title: "Monopoly",
+    description: "Køb og handel med ejendomme.",
+    image: "https://image.bog-ide.dk/4786036-1086187-1000-1000/webp/0/828/4786036-1086187-1000-1000.webp",
+    genre: ["Klassisk"],
+    rating: 5.5,
+  },
+  {
+    id: 10,
+    title: "Det dårlige selskab",
+    description: "Partyspil for voksne.",
+    image: "https://image.bog-ide.dk/2756017-344117-1000-1000/webp/0/828/2756017-344117-1000-1000.webp",
+    genre: ["Party"],
+    rating: 4.9,
+  }
 ];
 
 // 🚀 START
 renderGames(games);
 populateGenres();
 
-// 🎯 genres
+// 🎯 GENRES
 function populateGenres() {
   const genres = new Set();
 
@@ -40,15 +110,14 @@ function populateGenres() {
   });
 }
 
-// 🎮 RENDER (FIXET)
+// 🎮 RENDER (STABIL VERSION)
 function renderGames(list) {
   gameList.innerHTML = "";
   countText.textContent = "Find dit næste spil";
 
   const limited = list.slice(0, 10);
 
-  limited.forEach((game) => {
-
+  limited.forEach(game => {
     const html = `
       <article class="movie-card">
         <img class="movie-image ${game.title === "Matador" ? "matador-image" : ""}" 
@@ -69,7 +138,7 @@ function renderGames(list) {
   });
 }
 
-// 🪟 DIALOG (FIXET)
+// 🪟 DIALOG
 function showDialog(game) {
   const dialog = document.querySelector("#movie-dialog");
   const content = document.querySelector("#dialog-content");
@@ -77,6 +146,7 @@ function showDialog(game) {
   content.innerHTML = `
     <img src="${game.image}" alt="${game.title}">
     <h2>${game.title}</h2>
+    <p>${game.description}</p>
     <p>Genre: ${game.genre.join(", ")}</p>
     <p>⭐ ${game.rating}</p>
   `;
@@ -110,7 +180,7 @@ function updateGames() {
   renderGames(filtered);
 }
 
-// 👂 events
+// 👂 EVENTS
 searchInput.addEventListener("input", updateGames);
 genreSelect.addEventListener("change", updateGames);
 sortSelect.addEventListener("change", updateGames);
