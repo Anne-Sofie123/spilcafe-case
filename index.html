@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie App</title>
+  <link rel="stylesheet" href="app.css"/>
+</head>
+
+<body>
+  <header>
+    <h1>🎬 Movie App</h1>
+    <p>Søg, filtrér og sortér film</p>
+  </header>
+
+  <!-- CONTROLS -->
+  <section class="controls">
+
+    <input id="search-input" type="text" placeholder="Søg film..."/>
+
+    <select id="genre-select">
+      <option value="all">Alle genrer</option>
+    </select>
+
+    <select id="sort-select">
+      <option value="title">Sortér efter titel</option>
+      <option value="year">Sortér efter år</option>
+      <option value="rating">Sortér efter rating</option>
+    </select>
+
+  </section>
+
+  <p id="movie-count" class="movie-count"></p>
+
+  <!-- MOVIES -->
+  <main>
+    <section id="movie-list" class="movie-grid"></section>
+  </main>
+
+  <!-- DIALOG -->
+  <dialog id="movie-dialog">
+    <div id="dialog-content"></div>
+    <form method="dialog">
+      <button>Luk</button>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
