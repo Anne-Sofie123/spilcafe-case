@@ -20,7 +20,7 @@ let games = [
     id: 2,
     title: "Catan Junior",
     description: "Strategispil for børn.",
-    image: "https://image.bog-ide.dk/2670261-1075942-1000-1000/webp/0/1000/2670261-1075942-1000-1000.webp",
+    image: "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.bog-ide.dk%2Fproducts%2Fcatan-junior-2540364%3Fsrsltid%3DAU7gw4WpKahbNqsFaMsWt1XkGURWm-gat5flKXJpxsvlGH2DBg2qWHq0&ved=0CBYQjRxqFwoTCMDBse2mh5cDFQAAAAAdAAAAABA2&opi=89978449",
     genre: ["Strategi"],
     rating: 4.8,
   },
@@ -28,7 +28,7 @@ let games = [
     id: 3,
     title: "Sequence",
     description: "Kort- og brætspil kombination.",
-    image: "https://image.bog-ide.dk/2191954-1098986-1000-797/jpg/0/720/2191954-1098986-1000-797.jpg",
+    image: "https://lad-os-spille.dk/wp-content/uploads/2022/02/Catan-junior-travel-rejseudgave-lad-os-spille.png",
     genre: ["Strategi"],
     rating: 3.8,
   },
@@ -52,7 +52,7 @@ let games = [
     id: 6,
     title: "Det burde man jo vide",
     description: "Quizspil med sjove spørgsmål.",
-    image: "https://image.bog-ide.dk/2682991-307415-1000-1000/webp/0/828/2682991-307415-1000-1000.webp",
+    image: "https://www.hyggeonkel.dk/static/grafik/produktbilleder/det-burde-man-jo-vide-ja-eller-nej/cache/01-det-burde-man-jo-vide-ja-eller-nej-op-wm.jpg?v=1601372784",
     genre: ["Quiz"],
     rating: 4.8,
   },
@@ -60,7 +60,7 @@ let games = [
     id: 7,
     title: "Hint - partyspillet",
     description: "Gæt og tegn spil.",
-    image: "https://image.bog-ide.dk/5744789-1524823-1000-1000/webp/0/1000/5744789-1524823-1000-1000.webp",
+    image: "https://www.hyggeonkel.dk/static/grafik/produktbilleder/hint/cache/01-hint-2025-op-wm.jpg?v=1756219719",
     genre: ["Party"],
     rating: 4.9,
   },
@@ -68,7 +68,7 @@ let games = [
     id: 8,
     title: "Ticket to Ride",
     description: "Togstrategi spil.",
-    image: "https://image.bog-ide.dk/1900731-650524-999-1000/webp/0/828/1900731-650524-1000-1000.webp",
+    image: "https://www.bog-ide.dk/cdn/shop/files/1100398_ftp_2c448503-a741-4583-9f57-638715489b93.jpg?v=1788759691&width=1000",
     genre: ["Strategi"],
     rating: 3.2,
   },
@@ -76,7 +76,7 @@ let games = [
     id: 9,
     title: "Monopoly",
     description: "Køb og handel med ejendomme.",
-    image: "https://image.bog-ide.dk/4786036-1086187-1000-1000/webp/0/828/4786036-1086187-1000-1000.webp",
+    image: "https://image-resizing.booztcdn.com/monopoly/mooc1009797_cmulticoloured.webp?has_webp=1&version=1a6b8a6dd1d0a13e6e451bfec2c896c7&size=w900",
     genre: ["Klassisk"],
     rating: 5.5,
   },
@@ -84,7 +84,7 @@ let games = [
     id: 10,
     title: "Det dårlige selskab",
     description: "Partyspil for voksne.",
-    image: "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.hyggeonkel.dk%2Fprodukt%2Fdet-daarlige-selskab-1759205423%3Fsrsltid%3DAU7gw4UQiUxg6oyaQHY2lIp6XBL0MWQtFfCZKZF1L6mkdr_E6sFKmmK6&ved=0CBYQjRxqFwoTCKiyjp2lh5cDFQAAAAAdAAAAABA4&opi=89978449",
+    image: "https://www.hyggeonkel.dk/static/grafik/produktbilleder/det-daarlige-selskab-1759205423/cache/01-det-daarlige-selskab-1759205423-2025-for-wm.jpg",
     genre: ["Party"],
     rating: 4.9,
   }
@@ -184,3 +184,5 @@ function updateGames() {
 searchInput.addEventListener("input", updateGames);
 genreSelect.addEventListener("change", updateGames);
 sortSelect.addEventListener("change", updateGames);
+
+
