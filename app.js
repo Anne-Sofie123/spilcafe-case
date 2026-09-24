@@ -84,7 +84,7 @@ let games = [
     id: 10,
     title: "Det dårlige selskab",
     description: "Partyspil for voksne.",
-    image: "https://image.bog-ide.dk/2756017-344117-1000-1000/webp/0/828/2756017-344117-1000-1000.webp",
+    image: "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.hyggeonkel.dk%2Fprodukt%2Fdet-daarlige-selskab-1759205423%3Fsrsltid%3DAU7gw4UQiUxg6oyaQHY2lIp6XBL0MWQtFfCZKZF1L6mkdr_E6sFKmmK6&ved=0CBYQjRxqFwoTCKiyjp2lh5cDFQAAAAAdAAAAABA4&opi=89978449",
     genre: ["Party"],
     rating: 4.9,
   }
